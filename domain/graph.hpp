@@ -68,7 +68,7 @@ namespace Graph
 
             bool operator ==(const Edge _edge) const
             {
-                return (start == _edge.GetStart() && stop == _edge.GetStop() && cost == _edge.GetCost());
+                return (start == _edge.GetStart() && stop == _edge.GetStop());
             }
 
             void Print() const
@@ -151,10 +151,11 @@ namespace Graph
 
     class DiGraph : public Graph
     {
-        DiGraph(int _nr_vertices) : Graph(_nr_vertices)
-        {
+        public:
+            DiGraph(int _nr_vertices) : Graph(_nr_vertices)
+            {
 
-        }
+            }
 
     };
 }
