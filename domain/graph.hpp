@@ -6,6 +6,7 @@
 #define GRAPH_GRAPH_HPP
 
 #include <iostream>
+#include <fstream>
 #include <vector>
 #include <algorithm>
 
@@ -119,9 +120,26 @@ namespace Graph
 
             }
 
+            void ReadFromFile(std::string file_name)
+            {
+                std::ifstream fin(file_name);
+                int start, stop, cost;
+
+                fin >> nr_vertices;
+
+                while(fin >> start >> stop >> cost)
+                {
+                    AddEdge(Edge(start, stop, cost));
+                }
+
+                fin.close();
+            }
+
             void Print() const
             {
-                //Prints all the edges.
+                //Prints the number of vertices,the number of edges and all the edges.
+                std::cout << nr_vertices << ' ' << nr_edges << '\n';
+
                 for(Edge e : edges)
                     e.Print();
             }
@@ -129,6 +147,15 @@ namespace Graph
         private:
             int nr_vertices, nr_edges;
             std::vector<Edge> edges;
+    };
+
+    class DiGraph : public Graph
+    {
+        DiGraph(int _nr_vertices) : Graph(_nr_vertices)
+        {
+
+        }
+
     };
 }
 
